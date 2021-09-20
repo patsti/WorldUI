@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Patriks ultimate game experience - Knowledge is power!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|home|">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|game|">Game</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="|about|">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|dblist|">Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|contact|">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--5173-->
+
+<div class="container">
+    <h2>General Info</h2>
+    This project is using Java/Spring boot for both the Rest-API project and the GUI.
+    Animation is done with the Lottie-lib.
+
+    <h2>Project dependency descriptor</h2>
+    <ul>
+        <li>WorldUI</li>
+        <p>Java/spring boot is the development environment. Using Thymeleaf to ease GUI-creation.</p>
+        <h5>Workflow once game is started</h5>
+        <ol>
+            <li>./game-start, this path will generate a random seed, that is sent to the API to fetch a challenge</li>
+            <li>./game (redirected from /game-start), this function will send a request to the API to receive the challenge and visualize it</li>
+            <li>./gameredir (redirected when a guess is selected). If it's the first item then redirect to ./game, if it's the second selected item it will redirect to ./result, for validation</li>
+            <li>./result, another redirecting path. This will run the GameResponseObject.isCorrectGuess(). Then send the response into ./game-start which is then passed to ./game for visualization</li>
+        </ol>
+        <li>WorldRestApi</li>
+        <p>Java/spring boot is the development environment. Using JPA to sync between Database and rest-api.
+        The persist objects are identified by the naming, always ending with PO (ex. CityPO).
+        This project also contains serializable versions of the persit objects (ex. City). These are used for
+        external communication.
+        The main object is called GameResponseObject. The purpose of this is to send a standalone quiz/challenge that can verify it self.
+        once the challenge can be completed by a function called "isCorrectGuess". This will look at the guesses that has been
+        put into the GameResponseObject and do a validation-check, returning true/false</p>
+        <li>Database</li>
+        <p>Postgres is used as main DB. The data that I've been using is the world.sql.gz.
+        \n this consist of three tables, City, Country, CountryLanguage</p>
+    </ul>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>

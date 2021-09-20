@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <style>
+        #anim{max-width: 800px; margin:0 auto;}
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Country Languages from Database</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|home|">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|game|">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|about|">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="|dblist|">Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|contact|">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Switch search -->
+<div class="container">
+    <button>
+        <a class="nav-link" th:href="|cities|">City</a>
+    </button>
+    <button>
+        <a class="nav-link" th:href="|country|">Countries</a>
+    </button>
+    <button>
+        <a class="nav-link" th:href="|languages|">Languages</a>
+    </button>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Country Code</th>
+                    <th>Language</th>
+                    <th>isOfficial</th>
+                    <th>Percentage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="language : ${languages.page.content}">
+                    <td th:text="${language.countrycode}">Country Code</td>
+                    <td th:text="${language.language}">Language</td>
+                    <td th:text="${language.isofficial}">isOfficial</td>
+                    <td th:text="${language.percentage}">Percentage</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation" class="paging">
+                <ul class="pagination" th:if="${languages.page.totalPages > 1}">
+                    <li class="page-item" th:classappend="${!languages.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'languages?pageNumber=' + ${languages.paging.pageNumber - 1}}"
+                           tabindex="-1">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${languages.paging.getItems()}">
+                        <li class="page-item" th:classappend="${item.index == languages.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link" th:href="@{'languages?pageNumber=' + ${item.index}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${!languages.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'languages?pageNumber=' + ${languages.paging.pageNumber + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>

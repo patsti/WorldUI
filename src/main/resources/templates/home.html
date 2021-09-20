@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Patriks ultimate game experience - Knowledge is power!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="|home|">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|game|">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|about|">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|dblist|">Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|contact|">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h2>The World Quiz!</h2>
+    <p>So you think your know which cities are where? Play the Game to and claim your throne!</p>
+    <p>How it works: you will get some options of cities and countries, select which you think are connected</p>
+   <h3>Connected projects</h3>
+    <ul>
+        <li>GUI: WorldUI (This project)</li>
+        <li>RestAPI: WorldsRestApi</li>
+        <li>Database: PostgreDB loaded with MySqls world database.</li>
+    </ul>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <style>
+        #anim{max-width: 800px; margin:0 auto;}
+        #correct_answer{max-width: 800px; margin:0 auto;}
+        #wrong_answer{max-width: 800px; margin:0 auto;}
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Patriks ultimate game experience - Knowledge is power!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|home|">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="|game|">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|about|">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|dblist|">Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="|contact|">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div th:id="${animation}">
+
+<button id="child_div1" th:class="${navigation.getCss('1')}" th:onclick="|window.location.href='gameredir?selected=${navigation.getClick1()}'|" th:text="${city1.name}"/>
+<button id="child_div2" th:class="${navigation.getCss('2')}" th:onclick="|window.location.href='gameredir?selected=${navigation.getClick2()}'|" th:text="${country1.getName()}"/>
+<button id="child_div3" th:class="${navigation.getCss('3')}" th:onclick="|window.location.href='gameredir?selected=${navigation.getClick3()}'|" th:text="${city2.name}"/>
+<button id="child_div4" th:class="${navigation.getCss('4')}" th:onclick="|window.location.href='gameredir?selected=${navigation.getClick4()}'|" th:text="${country2.name}"/>
+
+
+</div>
+
+<script src="/scripts/lottie.js"/>
+<script src="/scripts/script.js"/>
+<!--<div class="container">
+    <form class="form-horizontal" th:object="${patrik.restapi.objects.City}" th:action="@{/City}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-group">
+            <label>Filter</label>
+            <input type="text" class="form-control" th:field="*{countrycode}"/>
+        </div>
+    </form>
+</div>-->
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>
