@@ -81,13 +81,13 @@
             <nav aria-label="Page navigation" class="paging">
                 <ul class="pagination" th:if="${cities.page.totalPages > 1}">
                     <li class="page-item" th:classappend="${!cities.paging.isPrevEnabled()? 'disabled' : ''}">
-                        <a class="page-link" th:href="@{'cities?pageNumber=' + ${cities.paging.pageNumber - 1}}"
+                        <a class="page-link" th:href="@{'cities?pageNumber=' + ${cities.paging.pageNumber - 1} + ${countrycode}}"
                            tabindex="-1">Previous</a>
                     </li>
                     <th:block th:each="item : ${cities.paging.getItems()}">
                         <li class="page-item" th:classappend="${item.index == cities.paging.pageNumber? 'active' : ''}"
                             th:if="${item.pageItemType.name() == 'PAGE'}">
-                            <a class="page-link" th:href="@{'cities?pageNumber=' + ${item.index}}"
+                            <a class="page-link" th:href="@{'cities?pageNumber=' + ${item.index} + ${countrycode}}"
                                th:text="${item.index}"></a>
                         </li>
                         <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
@@ -95,7 +95,7 @@
                         </li>
                     </th:block>
                     <li class="page-item" th:classappend="${!cities.paging.isNextEnabled()? 'disabled' : ''}">
-                        <a class="page-link" th:href="@{'cities?pageNumber=' + ${cities.paging.pageNumber + 1}}">Next</a>
+                        <a class="page-link" th:href="@{'cities?pageNumber=' + ${cities.paging.pageNumber + 1} + ${countrycode}}">Next</a>
                     </li>
                 </ul>
             </nav>

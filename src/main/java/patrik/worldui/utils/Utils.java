@@ -6,13 +6,15 @@ import java.util.Base64;
 
 public class Utils {
 
-    /** Read the object from Base64 string. Used when fetching object from Rest-API */
-    public static Object fromString( String s ) {
+    /**
+     * Read the object from Base64 string. Used when fetching object from Rest-API
+     */
+    public static Object fromString(String s) {
         try {
-            byte [] data = Base64.getDecoder().decode( s );
+            byte[] data = Base64.getDecoder().decode(s);
             ObjectInputStream ois = new ObjectInputStream(
-                    new ByteArrayInputStream(  data ) );
-            Object o  = ois.readObject();
+                    new ByteArrayInputStream(data));
+            Object o = ois.readObject();
             ois.close();
             return o;
         } catch (IOException | ClassNotFoundException e) {
@@ -25,8 +27,8 @@ public class Utils {
     public static String serialize(Serializable o) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream( baos );
-            oos.writeObject( o );
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(o);
             oos.close();
             return Base64.getEncoder().encodeToString(baos.toByteArray()).replace("/g", "QQQQQ").replace("+", "YYYYY");
         } catch (IOException e) {
@@ -39,10 +41,10 @@ public class Utils {
     public static Object deserialize(String s) {
         s = s.replace("QQQQQ", "/g").replace("YYYYY", "+");
         try {
-            byte [] data = Base64.getDecoder().decode( s );
+            byte[] data = Base64.getDecoder().decode(s);
             ObjectInputStream ois = new ObjectInputStream(
-                    new ByteArrayInputStream(  data ) );
-            Object o  = ois.readObject();
+                    new ByteArrayInputStream(data));
+            Object o = ois.readObject();
             ois.close();
             return o;
         } catch (IOException e) {
@@ -72,7 +74,7 @@ public class Utils {
             int insideLI = 0;
 
             while ((line = br.readLine()) != null) {
-                full+=line;
+                full += line;
             }
         } catch (Exception e) {
             e.printStackTrace();

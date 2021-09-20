@@ -29,7 +29,11 @@ public class NavigationController {
                        @RequestParam(value = "size", required = false, defaultValue = "10") int size, Model model,
                        @RequestParam(value = "countrycode", required = false, defaultValue = "") String countrycode) {
         model.addAttribute("cities", cityService.getCities(pageNumber, size, countrycode));
-
+        if (!countrycode.isEmpty()) {
+            model.addAttribute("countrycode", "&countrycode="+countrycode);
+        } else {
+            model.addAttribute("countrycode", "");
+        }
         return "cities";
     }
 
@@ -38,7 +42,11 @@ public class NavigationController {
                        @RequestParam(value = "size", required = false, defaultValue = "10") int size, Model model,
                        @RequestParam(value = "countrycode", required = false, defaultValue = "") String countrycode) {
         model.addAttribute("countries", cityService.getCountries(pageNumber, size, countrycode));
-
+        if (!countrycode.isEmpty()) {
+            model.addAttribute("countrycode", "&countrycode="+countrycode);
+        } else {
+            model.addAttribute("countrycode", "");
+        }
         return "country";
     }
 
@@ -47,13 +55,23 @@ public class NavigationController {
                        @RequestParam(value = "size", required = false, defaultValue = "10") int size, Model model,
                        @RequestParam(value = "countrycode", required = false, defaultValue = "") String countrycode) {
         model.addAttribute("languages", cityService.getCountryLanguages(pageNumber, size, countrycode));
-
+        if (!countrycode.isEmpty()) {
+            model.addAttribute("countrycode", "&countrycode="+countrycode);
+        } else {
+            model.addAttribute("countrycode", "");
+        }
         return "languages";
     }
 
-    @GetMapping("/dblist")
+    @RequestMapping("/dblist")
     public ModelAndView startNewGame(ModelMap model) {
         String redirect = "redirect:/cities";
+        return new ModelAndView(redirect, model);
+    }
+
+    @RequestMapping(value = "/")
+    public ModelAndView homePageRedirect(ModelMap model) {
+        String redirect = "redirect:/home";
         return new ModelAndView(redirect, model);
     }
 

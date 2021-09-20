@@ -31,10 +31,10 @@ public class GameController {
     @RequestMapping(value = "/game")
     @GetMapping
     public String game(Model model,
-            @RequestParam(value = "gamesession", required = false, defaultValue = "") String gamesession,
-            @RequestParam(value = "selected", required = false, defaultValue = "") String selected,
-            @RequestParam(value = "seed", required = false, defaultValue = "0") Integer seed,
-            @RequestParam(value = "result", required = false, defaultValue = "") String result) {
+                       @RequestParam(value = "gamesession", required = false, defaultValue = "") String gamesession,
+                       @RequestParam(value = "selected", required = false, defaultValue = "") String selected,
+                       @RequestParam(value = "seed", required = false, defaultValue = "0") Integer seed,
+                       @RequestParam(value = "result", required = false, defaultValue = "") String result) {
 
         GameResponseObject gameResponseObject = null;
         if (!gamesession.isEmpty()) {
@@ -87,7 +87,7 @@ public class GameController {
                                                         @RequestParam(value = "seed", required = false, defaultValue = "") Integer seed) {
         if (newselected != -1) {
             GameResponseObject gameResponseObject = (GameResponseObject) Utils.deserialize(gamesession);
-            gameResponseObject.addGuess(gameResponseObject.getItems().get(newselected-1));
+            gameResponseObject.addGuess(gameResponseObject.getItems().get(newselected - 1));
             NavigationHelper navigationHelper = new NavigationHelper(selected, seed, Utils.serialize(gameResponseObject));
             model.addAttribute("gamesession", Utils.serialize(gameResponseObject));
             model.addAttribute("selected", selected);
@@ -112,11 +112,11 @@ public class GameController {
         return new ModelAndView(redirect, model);
     }
 
-    @RequestMapping(value="/result")
+    @RequestMapping(value = "/result")
     public ModelAndView verifyResult(ModelMap model,
-                              @RequestParam(value = "gamesession", required = false, defaultValue = "") String gamesession,
-                              @RequestParam(value = "selected", required = false, defaultValue = "") String selected,
-                              @RequestParam(value = "seed", required = false, defaultValue = "") Integer seed) {
+                                     @RequestParam(value = "gamesession", required = false, defaultValue = "") String gamesession,
+                                     @RequestParam(value = "selected", required = false, defaultValue = "") String selected,
+                                     @RequestParam(value = "seed", required = false, defaultValue = "") Integer seed) {
 
         GameResponseObject gameResponseObject = (GameResponseObject) Utils.deserialize(gamesession);
         NavigationHelper navigationHelper = new NavigationHelper(selected, seed, gamesession);

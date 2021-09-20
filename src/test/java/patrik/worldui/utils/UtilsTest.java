@@ -28,13 +28,13 @@ public class UtilsTest extends TestCase {
 
     public void testSerialize() {
         String serializedCity = Utils.serialize(city);
-        City deserializedCity = (City)Utils.deserialize(serializedCity);
+        City deserializedCity = (City) Utils.deserialize(serializedCity);
 
         String serializedCountry = Utils.serialize(country);
-        Country deserializedCountry = (Country)Utils.deserialize(serializedCountry);
+        Country deserializedCountry = (Country) Utils.deserialize(serializedCountry);
 
         String serializedLanguage = Utils.serialize(countryLanguage);
-        CountryLanguage deserializedLanguage = (CountryLanguage)Utils.deserialize(serializedLanguage);
+        CountryLanguage deserializedLanguage = (CountryLanguage) Utils.deserialize(serializedLanguage);
 
         assertEquals(city.getName(), deserializedCity.getName());
         assertEquals(country.getName(), deserializedCountry.getName());

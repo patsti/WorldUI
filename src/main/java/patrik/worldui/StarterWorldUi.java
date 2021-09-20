@@ -2,11 +2,8 @@ package patrik.worldui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Collections;
-
-import static java.lang.Thread.sleep;
 
 @SpringBootApplication
 public class StarterWorldUi {

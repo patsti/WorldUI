@@ -1,9 +1,5 @@
 package patrik.worldui;
 
-import patrik.restapi.objects.City;
-import patrik.restapi.objects.Country;
-import patrik.restapi.objects.GameResponseObject;
-
 import java.util.*;
 
 public class NavigationHelper {
@@ -12,6 +8,7 @@ public class NavigationHelper {
     List<String> singleSelected = new ArrayList<>();
     private Integer seed = 0;
     private String gameSession;
+
     public NavigationHelper(String selected, Integer seed, String gameSession) {
         if (seed != null) {
             this.seed = seed;
@@ -28,7 +25,7 @@ public class NavigationHelper {
                     singleSelected.add(str);
                 }
             }
-            this.selected = singleSelected.toString().replace("[","").replace("]","").replaceAll(" ", "");
+            this.selected = singleSelected.toString().replace("[", "").replace("]", "").replaceAll(" ", "");
             while (!this.selected.matches("[0-9]*(\\,[0-9])*")) {
                 this.selected = this.selected.substring(1);
             }
@@ -47,7 +44,7 @@ public class NavigationHelper {
                 singleSelected.add(str);
             }
         }
-        String selected = singleSelected.toString().replace("[","").replace("]","").replaceAll(" ", "");
+        String selected = singleSelected.toString().replace("[", "").replace("]", "").replaceAll(" ", "");
         while (!selected.matches("[0-9]*(\\,[0-9])*")) {
             selected = selected.substring(1);
         }
@@ -58,7 +55,7 @@ public class NavigationHelper {
         return singleSelected.size() >= 2;
     }
 
-    public String getCss(String str){
+    public String getCss(String str) {
         if (singleSelected.contains(str)) {
             return "child_div_selected";
         }
@@ -68,30 +65,33 @@ public class NavigationHelper {
     public String getClick1() {
         List<String> checkedAnswers = new ArrayList<>(singleSelected);
         if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "1") + "&gamesession="+gameSession + "&newselect=" + 1;
+            return removeDuplicates(checkedAnswers, "1") + "&gamesession=" + gameSession + "&newselect=" + 1;
         }
-        return removeDuplicates(checkedAnswers, "1") + "&seed="+seed + "&gamesession="+gameSession + "&newselect=" + 1;
+        return removeDuplicates(checkedAnswers, "1") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 1;
     }
+
     public String getClick2() {
         List<String> checkedAnswers = new ArrayList<>(singleSelected);
         if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "2") + "&gamesession="+gameSession + "&newselect=" + 2;
+            return removeDuplicates(checkedAnswers, "2") + "&gamesession=" + gameSession + "&newselect=" + 2;
         }
-        return removeDuplicates(checkedAnswers, "2") + "&seed="+seed + "&gamesession="+gameSession + "&newselect=" + 2;
+        return removeDuplicates(checkedAnswers, "2") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 2;
     }
+
     public String getClick3() {
         List<String> checkedAnswers = new ArrayList<>(singleSelected);
         if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "3") + "&gamesession="+gameSession + "&newselect=" + 3;
+            return removeDuplicates(checkedAnswers, "3") + "&gamesession=" + gameSession + "&newselect=" + 3;
         }
-        return removeDuplicates(checkedAnswers, "3") + "&seed="+seed + "&gamesession="+gameSession + "&newselect=" + 3;
+        return removeDuplicates(checkedAnswers, "3") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 3;
     }
+
     public String getClick4() {
         List<String> checkedAnswers = new ArrayList<>(singleSelected);
         if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "4") + "&gamesession="+gameSession + "&newselect=" + 4;
+            return removeDuplicates(checkedAnswers, "4") + "&gamesession=" + gameSession + "&newselect=" + 4;
         }
-        return removeDuplicates(checkedAnswers, "4") + "&seed="+seed + "&gamesession="+gameSession + "&newselect=" + 4;
+        return removeDuplicates(checkedAnswers, "4") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 4;
     }
 
     @Override
