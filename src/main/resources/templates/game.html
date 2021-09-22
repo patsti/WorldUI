@@ -44,6 +44,11 @@
         </div>
     </div>
 </nav>
+
+<div class="container">
+    <h2 style="text-align:center">--Click on the matching City and Country--</h2>
+</div>
+
 <div th:id="${animation}">
 
 <button id="child_div1" th:class="${navigation.getCss('1')}" th:onclick="|window.location.href='gameredir?selected=${navigation.getClick1()}'|" th:text="${city1.name}"/>
