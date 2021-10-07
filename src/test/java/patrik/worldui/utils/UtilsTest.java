@@ -23,7 +23,7 @@ public class UtilsTest extends TestCase {
         country.setName("CountryName");
 
         countryLanguage = new CountryLanguage();
-        countryLanguage.setLanguage("Language");
+        countryLanguage.setName("Language");
     }
 
     public void testSerialize() {
@@ -38,7 +38,7 @@ public class UtilsTest extends TestCase {
 
         assertEquals(city.getName(), deserializedCity.getName());
         assertEquals(country.getName(), deserializedCountry.getName());
-        assertEquals(countryLanguage.getLanguage(), deserializedLanguage.getLanguage());
+        assertEquals(countryLanguage.getName(), deserializedLanguage.getName());
 
     }
 

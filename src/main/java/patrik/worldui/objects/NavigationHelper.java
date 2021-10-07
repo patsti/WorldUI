@@ -1,9 +1,12 @@
-package patrik.worldui;
+package patrik.worldui.objects;
 
 import java.util.*;
 
+/**
+ * A helper class to navigate a game session.
+ */
 public class NavigationHelper {
-    public String selected = "";
+    public String selected;
     public List<String> selectedList = new ArrayList<>();
     List<String> singleSelected = new ArrayList<>();
     private Integer seed = 0;
@@ -18,7 +21,7 @@ public class NavigationHelper {
             this.selected = selected;
             Collections.addAll(selectedList, selected.split(","));
 
-            Set<String> uniqueGas = new HashSet<String>(selectedList);
+            Set<String> uniqueGas = new HashSet<>(selectedList);
             for (String str : uniqueGas) {
                 int occurances = Collections.frequency(selectedList, str);
                 if (occurances == 1) {
@@ -34,9 +37,14 @@ public class NavigationHelper {
         }
     }
 
+    /**
+     * @param list   list of all currentGuesses
+     * @param addStr New Guess
+     * @return list of current guesses without duplicates.
+     */
     private String removeDuplicates(List<String> list, String addStr) {
         list.add(addStr);
-        Set<String> uniqueGas = new HashSet<String>(list);
+        Set<String> uniqueGas = new HashSet<>(list);
         List<String> singleSelected = new ArrayList<>();
         for (String str : uniqueGas) {
             int occurrences = Collections.frequency(list, str);
@@ -51,10 +59,17 @@ public class NavigationHelper {
         return selected;
     }
 
+    /**
+     * @return true if game is ready to be validated (2 guesses selected).
+     */
     public boolean isTwoAnswerSelected() {
         return singleSelected.size() >= 2;
     }
 
+    /**
+     * @param str id of guess-box.
+     * @return css-style for (un)selected guesses
+     */
     public String getCss(String str) {
         if (singleSelected.contains(str)) {
             return "child_div_selected";
@@ -62,36 +77,16 @@ public class NavigationHelper {
         return "child_div";
     }
 
-    public String getClick1() {
+    /**
+     * @param indexOfBox index of which box was clicked
+     * @return url-parameters used to navigate the app.
+     */
+    public String onGuessClicked(String indexOfBox) {
         List<String> checkedAnswers = new ArrayList<>(singleSelected);
         if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "1") + "&gamesession=" + gameSession + "&newselect=" + 1;
+            return removeDuplicates(checkedAnswers, indexOfBox) + "&gamesession=" + gameSession + "&newselect=" + indexOfBox;
         }
-        return removeDuplicates(checkedAnswers, "1") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 1;
-    }
-
-    public String getClick2() {
-        List<String> checkedAnswers = new ArrayList<>(singleSelected);
-        if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "2") + "&gamesession=" + gameSession + "&newselect=" + 2;
-        }
-        return removeDuplicates(checkedAnswers, "2") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 2;
-    }
-
-    public String getClick3() {
-        List<String> checkedAnswers = new ArrayList<>(singleSelected);
-        if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "3") + "&gamesession=" + gameSession + "&newselect=" + 3;
-        }
-        return removeDuplicates(checkedAnswers, "3") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 3;
-    }
-
-    public String getClick4() {
-        List<String> checkedAnswers = new ArrayList<>(singleSelected);
-        if (seed == 0) {
-            return removeDuplicates(checkedAnswers, "4") + "&gamesession=" + gameSession + "&newselect=" + 4;
-        }
-        return removeDuplicates(checkedAnswers, "4") + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + 4;
+        return removeDuplicates(checkedAnswers, indexOfBox) + "&seed=" + seed + "&gamesession=" + gameSession + "&newselect=" + indexOfBox;
     }
 
     @Override

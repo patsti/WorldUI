@@ -9,11 +9,11 @@ public class GameResponseObject implements Serializable {
     List<CompareAbstract> gameItems;
     Guess guess;
 
-    public void addItem(CompareAbstract city) {
+    public void addItem(CompareAbstract item) {
         if (gameItems == null) {
             gameItems = new ArrayList<>();
         }
-        gameItems.add(city);
+        gameItems.add(item);
     }
 
     public List<CompareAbstract> getItems() {
